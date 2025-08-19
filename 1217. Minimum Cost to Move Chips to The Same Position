@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int minCostToMoveChips(vector<int>& position) {
+
+        map<int,int>mp;
+        for(auto x:position)mp[x]++;
+
+        int c=0;
+        int c1=0;
+
+        for(auto x:mp){
+            if(x.first%2==0)c+=x.second;
+            else c1+=x.second;
+        }
+
+        return min(c, c1);
+        
+    }
+};
