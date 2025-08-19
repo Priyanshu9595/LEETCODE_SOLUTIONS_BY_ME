@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int minCost(int n, vector<vector<int>>& edges) {
+
+        vector<vector<pair<int,int>>>adj(n,vector<pair<int,int>>());
+
+
+        skyfor(auto e:edges){
+            adj[e[0]].push_back({e[1],e[2]});
+            adj[e[1]].push_back({e[0],2*e[2]});
+        }
+
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
+
+        vector<int>dist(n,INT_MAX);
+
+        pq.push({0,0});
+        dist[0]=0;
+
+        while(!pq.empty()){
+            auto x=pq.top();
+
+            int node=x.second;
+            int cost=x.first;
+            pq.pop();
+
+
+            if(node==n-1)return cost;
+
+
+            for(auto p:adj[node]){
+               if(dist[p.first]>cost+p.second){
+                dist[p.first]=cost+p.second;
+                pq.push({cost+p.second,p.first});
+               }
+            }
+        }
+        return -1;
+    }
+};
