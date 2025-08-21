@@ -1,0 +1,55 @@
+class Solution {
+public:
+
+vector<vector<int>>dir={{0,1},{0,-1},{1,0},{-1,0}};
+
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+
+          int n=image.size();
+          int m=image[0].size();
+
+       
+
+        queue<pair<int,int>>q;
+
+        q.push({sr,sc});
+
+        int p=image[sr][sc];
+        image[sr][sc]=color;
+
+        while(!q.empty()){
+
+            int s=q.size();
+          
+
+            while(s--){
+            auto x=q.front();
+            int i=x.first;
+            int j=x.second;
+
+            q.pop();
+
+          
+
+
+
+            for(auto d:dir){
+                int i_=i+d[0];
+                int j_=j+d[1];
+
+                if(i_>=0 && j_>=0 && i_<n && j_<m &&image[i_][j_]!=color&& image[i_][j_]==p){
+                    q.push({i_,j_});
+                                                    image[i_][j_]=color;
+
+
+
+                }
+            }
+        }
+
+        }
+
+        return image;
+        
+    }
+};
