@@ -1,0 +1,53 @@
+class Solution {
+public:
+    int countSpecialNumbers(int n) {
+        string s=to_string(n);
+        int ans=0;
+
+        int dig=s.size();
+
+        for(int i=1;i<dig;i++){
+            int x=1;
+            int k=9;
+            for(int j=0;j<i-1;j++){
+               x*=k;
+               k--;
+            }
+            ans+=(x*9);
+        }
+           //cout<<ans<<endl;
+        vector<int>used(10,0);
+
+        for(int i=0;i<dig;i++){
+            int small=0;
+
+            for(int j=0;j<s[i]-'0';j++){
+                if(used[j]==0)small++;
+            }
+
+            if(i==0)small--;
+
+            int rem=10-i-1;
+
+            int sum=0;
+
+            int p=1;
+
+            for(int m=i+1;m<dig;m++){
+                p=p*rem;
+                rem--;
+                
+            }
+            ans+=p*small;
+
+            if(!used[s[i]-'0'])used[s[i]-'0']=1;
+            else break;
+        }
+
+        if(accumulate(used.begin(),used.end(),0)==dig)ans++;
+
+        return ans;
+        
+        
+    }
+};
