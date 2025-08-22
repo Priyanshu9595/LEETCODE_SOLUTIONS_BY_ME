@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool checkDistances(string s, vector<int>& distance) {
+
+        bool ans=true;
+
+        map<char,vector<int>>mp;
+
+        for(int i=0;i<s.size();i++)mp[s[i]].push_back(i);
+
+
+        for(auto x:mp){
+            if(x.second[1]-x.second[0]!=distance[x.first-'a']+1)ans=false;
+        }
+
+        return ans;
+        
+    }
+};
