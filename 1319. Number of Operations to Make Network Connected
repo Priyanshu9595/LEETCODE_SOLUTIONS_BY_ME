@@ -1,0 +1,43 @@
+class Solution {
+public:
+
+
+  void dfs(int i,vector<vector<int>>&adj,vector<int>&vis){
+
+        vis[i]=1;
+       
+
+        for(auto x:adj[i]){
+            if(vis[x]==-1)dfs(x,adj,vis);
+        }
+
+
+    }
+
+    int makeConnected(int n, vector<vector<int>>& connections) {
+
+        if(n>connections.size()+1)return -1;
+
+        int ans=0;
+
+        vector<vector<int>>adj(n,vector<int>());
+
+        for(auto c:connections){
+            adj[c[0]].push_back(c[1]);
+                        adj[c[1]].push_back(c[0]);
+        }
+          vector<int>vis(n,-1);
+
+        for(int i=0;i<n;i++){
+             if(vis[i]==-1){
+             dfs(i,adj,vis);
+               
+               ans++;
+             }
+
+
+
+        }
+    return ans-1;
+    }
+};
