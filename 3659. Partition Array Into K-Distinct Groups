@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool partitionArray(vector<int>& nums, int k) {
+
+        int n=nums.size();
+
+        map<int,int>mp;
+        for(auto x:nums)mp[x]++;
+
+        bool ans=true;
+
+        if(n%k!=0)ans=false;
+
+        for(auto x:mp){
+            if(x.second>(n/k))ans=false;
+        }
+        
+        return ans;
+
+        
+    }
+};
