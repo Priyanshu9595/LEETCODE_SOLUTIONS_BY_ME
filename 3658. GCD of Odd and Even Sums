@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int gcdOfOddEvenSums(int n) {
+
+       int p=n;
+       int m=n;
+
+        p=p*p;
+        m=2*(m*(m+1))/2;
+
+
+        return __gcd(p,m);
+
+
+        
+    }
+};
