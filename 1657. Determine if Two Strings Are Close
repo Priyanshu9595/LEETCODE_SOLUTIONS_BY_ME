@@ -1,0 +1,36 @@
+class Solution {
+public:
+    bool closeStrings(string word1, string word2) {
+
+        bool ans=true;
+
+        map<char,int>mp1;
+        map<char,int>mp2;
+
+        for(auto x:word1)mp1[x]++;
+        for(auto x:word2)mp2[x]++;
+
+        vector<int>a;
+        vector<int>b;
+
+        string p="",q="";
+
+        for(auto x:mp1)p+=x.first,a.push_back(x.second);
+        for(auto x:mp2)q+=x.first,b.push_back(x.second);
+
+        if(p!=q)return false;
+
+        if(a.size()!=b.size())return false;
+
+        sort(a.rbegin(),a.rend());
+        sort(b.rbegin(),b.rend());
+
+        for(int i=0;i<a.size();i++){
+            if(a[i]!=b[i])ans=false;
+        }
+         
+         return ans;
+
+        
+    }
+};
