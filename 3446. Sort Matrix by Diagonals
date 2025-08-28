@@ -1,0 +1,67 @@
+class Solution {
+public:
+    vector<vector<int>> sortMatrix(vector<vector<int>>& grid) {
+
+        int n=grid.size();
+        int m=grid[0].size();
+        vector<vector<int>>ans(n,vector<int>(m));
+
+
+        for(int i=0;i<n;i++){
+            int i_=i;
+            int j_=0;
+            int p_=i;
+            int q_=0;
+
+            vector<int>curr;
+
+            while(i_<n && j_<m){
+                curr.push_back(grid[i_][j_]);
+                i_++;
+                j_++;
+            }
+
+            sort(curr.rbegin(),curr.rend());
+            int k=0;
+             while(p_<n && q_<m){
+               ans[p_][q_]=curr[k];
+               k++;
+               p_++;
+               q_++;
+            }
+curr.clear();
+
+
+        }
+
+        for(int i=1;i<m;i++){
+            int i_=0;
+            int j_=i;
+            int p_=0;
+            int q_=i;
+
+            vector<int>curr;
+
+            while(i_<n && j_<m){
+                curr.push_back(grid[i_][j_]);
+                i_++;
+                j_++;
+            }
+
+            sort(curr.begin(),curr.end());
+            int k=0;
+             while(p_<n && q_<m){
+               ans[p_][q_]=curr[k];
+               k++;
+               p_++;
+               q_++;
+            }
+curr.clear();
+
+
+        }
+
+        return ans;
+        
+    }
+};
